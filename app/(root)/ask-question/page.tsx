@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const AskQuestionPage = () => {
-  return (
-    <div>AskQuestionPage</div>
-  )
-}
+    return <div>AskQuestionPage</div>;
+};
 
-export default AskQuestionPage
+export default AskQuestionPage;
