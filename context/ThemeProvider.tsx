@@ -23,12 +23,18 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     const handleThemeChange = () => {
-        if(mode === 'light'){
-            setMode('light');
-            document.documentElement.classList.add('light');
-        }else{
+        if(
+            localStorage.theme === 'dark' ||
+            (
+                !('theme' in localStorage) &&
+                matchMedia("(prefer-color-scheme: dark)").matches
+            )
+        ){
             setMode('dark');
             document.documentElement.classList.add('dark');
+        }else{
+            setMode('light');
+            document.documentElement.classList.remove('dark');
         }
     }
 
