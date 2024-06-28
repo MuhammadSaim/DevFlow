@@ -34,7 +34,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     useEffect(() => {
-        handleThemeChange()
+        handleThemeChange();
     }, [mode]);
 
 
