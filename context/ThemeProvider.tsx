@@ -1,11 +1,7 @@
 'use client';
 
-import React, { useEffect, createContext, useState, useContext } from 'react';
-
-interface ThemeContextType {
-    mode: string;
-    setMode: (mode: string) => void;
-}
+import { ThemeContextType } from '@/types';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 

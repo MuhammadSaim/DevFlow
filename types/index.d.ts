@@ -9,3 +9,8 @@ export interface SidebarLink {
     route: string;
     label: string;
 }
+
+export interface ThemeContextType {
+    mode: string;
+    setMode: (mode: string) => void;
+}
