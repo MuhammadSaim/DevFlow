@@ -26,10 +26,10 @@ const HomePage = () => {
                     placeholder="Search for question"
                     otherClasses="flex-1"
                 />
-                <Filter 
+                <Filter
                     filters={HomePageFilters}
                     otherClasses="min-h-[56px] sm:min-w-[170px]"
-                    containerClasses="hidden max-md:flex"
+                    containerClasses="max-md:flex"
                 />
             </div>
         </>
