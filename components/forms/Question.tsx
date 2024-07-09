@@ -15,15 +15,18 @@ import { QuestionSchema } from '@/lib/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Editor } from '@tinymce/tinymce-react';
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 
-const Question = () => {
+const Question = ({ mongoUserId }: { mongoUserId: string }) => {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter();
+    const pathName = usePathname();
     const type: string = 'create';
 
     // 1. Define your form.
@@ -42,7 +45,15 @@ const Question = () => {
         try {
             // make an aysnc call to our api
             // navigate to home page
-            await createQuestion();
+            await createQuestion({
+                title: values.title,
+                content: values.explanation,
+                tags: values.tags,
+                author: JSON.parse(mongoUserId),
+            });
+
+            // navigate to the home page
+            router.push('/');
         } catch (error) {
         } finally {
             setIsSubmitting(false);
