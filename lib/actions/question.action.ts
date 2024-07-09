@@ -21,7 +21,7 @@ export async function createQuestion(params: any) {
 
         // create the tags
         for (const tag of tags) {
-            const existingTag = await Tag.findByIdAndUpdate(
+            const existingTag = await Tag.findOneAndUpdate(
                 {
                     name: {
                         $regex: new RegExp(`^${tag}$`, 'i'),
@@ -29,7 +29,7 @@ export async function createQuestion(params: any) {
                 },
                 {
                     $setOnInsert: { name: tag },
-                    $push: {
+                    $addToSet: {
                         question: question._id,
                     },
                 },
@@ -42,7 +42,7 @@ export async function createQuestion(params: any) {
         }
 
         await Question.findByIdAndUpdate(question._id, {
-            $push: { tags: { $each: tagDocuments } },
+            $addToSet: { tags: { $each: tagDocuments } },
         });
     } catch (error) {
         console.log(error);
