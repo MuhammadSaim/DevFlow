@@ -50,6 +50,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
                 content: values.explanation,
                 tags: values.tags,
                 author: JSON.parse(mongoUserId),
+                path: pathName,
             });
 
             // navigate to the home page
